@@ -1,23 +1,44 @@
 // Scroll Smooth
-document.getElementById('get-started').addEventListener('click', function () {
-    document.getElementById('phone-container').scrollIntoView({ behavior: 'smooth' });
-  });
+document.getElementById("get-started").addEventListener("click", function () {
+  document
+    .getElementById("phone-container")
+    .scrollIntoView({ behavior: "smooth" });
+});
 
-const loadPhones = async () => {
+const loadPhones = async (searchText) => {
   const res = await fetch(
-    "https://openapi.programming-hero.com/api/phones?search=iphone"
+    `https://openapi.programming-hero.com/api/phones?search=${searchText}`
   );
   const data = await res.json();
   const phones = data.data;
   displayPhones(phones);
 };
 
-loadPhones();
+const defaultPhonesDisplay = async (searchText) => {
+  const res = await fetch(
+    `https://openapi.programming-hero.com/api/phones?search=iphone`
+  );
+  const data = await res.json();
+  const phones = data.data;
+  displayPhones(phones);
+};
 
 const displayPhones = (phones) => {
   const cardContainer = document.getElementById("phone-container");
+  //   Clear Container
+  cardContainer.textContent = "";
+    const showAllContainer = document.getElementById('show-all-container')
+  if (phones.length > 12) {
+    showAllContainer.classList.remove('hidden')
+  }else{
+    showAllContainer.classList.add('hidden')
+  }
+
+    // Display First 12 Phones 
+  phones = phones.slice(0, 12);
+
   phones.forEach((phone) => {
-    console.log(phone);
+    // console.log(phone);
     // Phone Card
     const phoneCard = document.createElement("div");
     phoneCard.classList =
@@ -72,3 +93,15 @@ const displayPhones = (phones) => {
     cardContainer.appendChild(phoneCard);
   });
 };
+
+// Search Button
+
+const handleSearch = () => {
+  const searchInput = document.getElementById("search-input");
+  const searchText = searchInput.value;
+
+  console.log(searchText);
+  loadPhones(searchText);
+};
+
+defaultPhonesDisplay();
