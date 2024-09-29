@@ -92,16 +92,28 @@ const displayPhones = (phones) => {
 
     cardContainer.appendChild(phoneCard);
   });
+//   Hide Loading Spinner
+toggleLoadingSpinner(false)
 };
 
 // Search Button
 
 const handleSearch = () => {
+    toggleLoadingSpinner(true)
   const searchInput = document.getElementById("search-input");
   const searchText = searchInput.value;
 
   console.log(searchText);
   loadPhones(searchText);
 };
+
+const toggleLoadingSpinner = (isLoading) =>{
+    const spinner = document.getElementById('spinner');
+    if (isLoading) {
+        spinner.classList.remove('hidden')
+    }else{
+        spinner.classList.add('hidden')
+    }
+}
 
 defaultPhonesDisplay();
