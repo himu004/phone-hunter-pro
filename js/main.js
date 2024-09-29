@@ -1,3 +1,8 @@
+// Scroll Smooth
+document.getElementById('get-started').addEventListener('click', function () {
+    document.getElementById('phone-container').scrollIntoView({ behavior: 'smooth' });
+  });
+
 const loadPhones = async () => {
   const res = await fetch(
     "https://openapi.programming-hero.com/api/phones?search=iphone"
@@ -23,8 +28,7 @@ const displayPhones = (phones) => {
                     </a>
                     <div class="px-5 pb-5">
                         <a href="#">
-                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 ">Apple Watch
-                                Series 7 GPS, Aluminium Case, Starlight Sport</h5>
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 ">${phone.phone_name}</h5>
                         </a>
                         <div class="flex items-center mt-2.5 mb-5">
                             <div class="flex items-center space-x-1 rtl:space-x-reverse">
@@ -60,8 +64,7 @@ const displayPhones = (phones) => {
                         <div class="flex items-center justify-between">
                             <span class="text-3xl font-bold text-gray-900 ">$599</span>
                             <a href="#"
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
-                                to cart</a>
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Show Details</a>
                         </div>
                     </div>
         `;
