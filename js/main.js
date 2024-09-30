@@ -14,14 +14,6 @@ const loadPhones = async (searchText) => {
   displayPhones(phones);
 };
 
-const defaultPhonesDisplay = async (searchText) => {
-  const res = await fetch(
-    `https://openapi.programming-hero.com/api/phones?search=iphone`
-  );
-  const data = await res.json();
-  const phones = data.data;
-  displayPhones(phones);
-};
 
 const displayPhones = (phones) => {
   const cardContainer = document.getElementById("phone-container");
@@ -116,4 +108,4 @@ const toggleLoadingSpinner = (isLoading) =>{
     }
 }
 
-defaultPhonesDisplay();
+loadPhones('iphone');
